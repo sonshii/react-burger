@@ -1,0 +1,49 @@
+.headerWrap {
+    height: 88px;
+    left: 2%;
+    right: 2%;
+    top: 40px;
+    background: #1C1C21;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.headerContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 1280px;
+    height: 56px;
+    left: calc(50% - 1280px/2);
+    top: calc(50% - 56px/2);
+}
+
+.navigation {
+    display: flex;
+}
+
+.navigationLink {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* padding: 16px 20px; */
+    position: static;
+    left: 186px;
+    top: 0px;
+    background: #1C1C21;
+    box-sizing: border-box;
+    border-radius: 40px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin: 0px 8px;
+}
+
+.name {
+    font-family: JetBrains Mono;
+    color: #8585AD;
+    text-decoration: none;
+    margin-left: 8px;
+}

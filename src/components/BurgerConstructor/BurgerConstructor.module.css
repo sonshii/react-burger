@@ -1,0 +1,15 @@
+.main {
+    width: 600px;
+    height: 912px;
+    align-items: center;
+    overflow: auto;
+}
+
+.constructorList {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.constructorList:first-child,
+.constructorList:last-child {}
