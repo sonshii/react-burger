@@ -5,11 +5,37 @@
     overflow: auto;
 }
 
+.main::-webkit-scrollbar {
+    width: 12px;
+}
+
+.main::-webkit-scrollbar-track {
+    background: #2F2F37;
+}
+
+.main::-webkit-scrollbar-thumb {
+    background: #8585AD;
+    border: 3px solid #2F2F37;
+    border-radius: 6px;
+}
+
 .constructorList {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.constructorList:first-child,
-.constructorList:last-child {}
+.elementBlock {
+    padding-left: 56px;
+}
+
+.dragIcon {
+    left: 22.92%;
+    right: 22.92%;
+    top: 12.5%;
+    bottom: 11.22%;
+}
+
+.width {
+    width: -webkit-fill-available;
+}

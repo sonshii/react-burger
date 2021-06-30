@@ -1,9 +1,10 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import {
     Tab,
     CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import AppMainStyles from "./AppMain.module.css";
+import BurgerIngredientsStyles from "./BurgerIngredients.module.css";
 
 function BurgerIngredients(props) {
     const [current, setCurrent] = React.useState("one");
@@ -17,8 +18,8 @@ function BurgerIngredients(props) {
         return sauce.type === "sauce";
     });
     return (
-        <div className={`${AppMainStyles.main} mr-10`}>
-            <h1 className={`${AppMainStyles.mainTitle} mt-8 mb-5`}>
+        <section className={`${BurgerIngredientsStyles.main} mr-10`}>
+            <h1 className={`${BurgerIngredientsStyles.mainTitle} mt-8 mb-5`}>
                 Соберите бургер
             </h1>
             <div style={{ display: "flex" }}>
@@ -44,49 +45,71 @@ function BurgerIngredients(props) {
                     Начинки
                 </Tab>
             </div>
-            <h2 className={`${AppMainStyles.secondaryTitle} mt-8 mb-6`}>Булки</h2>
-            <div className={`${AppMainStyles.cardList}`}>
+            <h2
+                className={`${BurgerIngredientsStyles.secondaryTitle} mt-8 mb-6`}
+            >
+                Булки
+            </h2>
+            <ul className={`${BurgerIngredientsStyles.cardList}`}>
                 {bun.map((bun) => (
-                    <div key={bun._id} className={AppMainStyles.card}>
-                        <img src={bun.image}></img>
-                        <div className={`${AppMainStyles.price_block}`}>
+                    <li key={bun._id} className={BurgerIngredientsStyles.card}>
+                        <img src={bun.image} alt="img"></img>
+                        <div
+                            className={`${BurgerIngredientsStyles.price_block}`}
+                        >
                             <p className={`mr-2`}>{bun.price}</p>
                             <CurrencyIcon type="primary" />
                         </div>
                         <p>{bun.name}</p>
-                    </div>
+                    </li>
                 ))}
-            </div>
+            </ul>
 
-            <h2 className={`${AppMainStyles.secondaryTitle} mt-8 mb-6`}>Соусы</h2>
-            <div className={`${AppMainStyles.cardList}`}>
+            <h2
+                className={`${BurgerIngredientsStyles.secondaryTitle} mt-8 mb-6`}
+            >
+                Соусы
+            </h2>
+            <ul className={`${BurgerIngredientsStyles.cardList}`}>
                 {main.map((bun) => (
-                    <div key={bun._id} className={AppMainStyles.card}>
-                        <img src={bun.image}></img>
-                        <div className={`${AppMainStyles.price_block}`}>
+                    <li key={bun._id} className={BurgerIngredientsStyles.card}>
+                        <img src={bun.image} alt="img"></img>
+                        <div
+                            className={`${BurgerIngredientsStyles.price_block}`}
+                        >
                             <p className={`mr-2`}>{bun.price}</p>
                             <CurrencyIcon type="primary" />
                         </div>
                         <p>{bun.name}</p>
-                    </div>
+                    </li>
                 ))}
-            </div>
+            </ul>
 
-            <h2 className={`${AppMainStyles.secondaryTitle} mt-8 mb-6`}>Начинки</h2>
-            <div className={`${AppMainStyles.cardList}`}>
+            <h2
+                className={`${BurgerIngredientsStyles.secondaryTitle} mt-8 mb-6`}
+            >
+                Начинки
+            </h2>
+            <ul className={`${BurgerIngredientsStyles.cardList}`}>
                 {sauce.map((bun) => (
-                    <div key={bun._id} className={AppMainStyles.card}>
-                        <img src={bun.image}></img>
-                        <div className={`${AppMainStyles.price_block}`}>
+                    <li key={bun._id} className={BurgerIngredientsStyles.card}>
+                        <img src={bun.image} alt="img"></img>
+                        <div
+                            className={`${BurgerIngredientsStyles.price_block}`}
+                        >
                             <p className={`mr-2`}>{bun.price}</p>
                             <CurrencyIcon type="primary" />
                         </div>
                         <p>{bun.name}</p>
-                    </div>
+                    </li>
                 ))}
-            </div>
-        </div>
+            </ul>
+        </section>
     );
 }
+
+BurgerIngredients.propTypes = {
+    data: PropTypes.object,
+};
 
 export default BurgerIngredients;
