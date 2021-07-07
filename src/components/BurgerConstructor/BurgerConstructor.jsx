@@ -1,15 +1,19 @@
-import React from "react";
-import PropTypes from 'prop-types';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import OrderDetails from "../OrderDetails/OrderDetails";
 import {
     ConstructorElement,
     DragIcon,
+    CurrencyIcon,
+    Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
 import BurgerConstructorStyles from "./BurgerConstructor.module.css";
 
 function BurgerConstructor(props) {
-    const filterData = props.data.slice(1, -1);
+    const [showModal, setShowModal] = useState(false);
 
+    const filterData = props.data.slice(1, -1);
     return (
         <section className={BurgerConstructorStyles.main}>
             <div
@@ -35,17 +39,17 @@ function BurgerConstructor(props) {
                     return (
                         <div
                             className={`${BurgerConstructorStyles.constructorList} pl-7`}
-                            key={element.id}
+                            key={element._id}
                         >
                             <div className={BurgerConstructorStyles.dragIcon}>
                                 <DragIcon type="primary" />
                             </div>
                             <div className={BurgerConstructorStyles.width}>
-                            <ConstructorElement
-                                text={element.name}
-                                price={element.price}
-                                thumbnail={element.image_mobile}
-                            />
+                                <ConstructorElement
+                                    text={element.name}
+                                    price={element.price}
+                                    thumbnail={element.image_mobile}
+                                />
                             </div>
                         </div>
                     );
@@ -61,13 +65,33 @@ function BurgerConstructor(props) {
                         }
                     />
                 </div>
+                <div className={BurgerConstructorStyles.totalPriceBlock}>
+                    <div
+                        className={`${BurgerConstructorStyles.totalPriceBlock} `}
+                    >
+                        <p className={`${BurgerConstructorStyles.price} mr-2`}>
+                            610
+                        </p>
+                        <CurrencyIcon type="primary" />
+                    </div>
+                    <div className="ml-8">
+                        <Button
+                            type="primary"
+                            size="medium"
+                            onClick={()=>{setShowModal(true)}}
+                        >
+                            Оформить заказ
+                        </Button>
+                    </div>
+                </div>
             </div>
+            <OrderDetails show={showModal}></OrderDetails>
         </section>
     );
 }
 
 BurgerConstructor.propTypes = {
-    data: PropTypes.object,
+    data: PropTypes.array,
 };
 
 export default BurgerConstructor;

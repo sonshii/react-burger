@@ -8,6 +8,7 @@ import BurgerIngredientsStyles from "./BurgerIngredients.module.css";
 
 function BurgerIngredients(props) {
     const [current, setCurrent] = React.useState("one");
+    console.log(props)
     const bun = props.data.filter((bun) => {
         return bun.type === "bun";
     });
@@ -60,7 +61,7 @@ function BurgerIngredients(props) {
                             <p className={`mr-2`}>{bun.price}</p>
                             <CurrencyIcon type="primary" />
                         </div>
-                        <p>{bun.name}</p>
+                        <p className={BurgerIngredientsStyles.name}>{bun.name}</p>
                     </li>
                 ))}
             </ul>
@@ -109,7 +110,7 @@ function BurgerIngredients(props) {
 }
 
 BurgerIngredients.propTypes = {
-    data: PropTypes.object,
+    data: PropTypes.array,
 };
 
 export default BurgerIngredients;
