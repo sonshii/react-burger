@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import OrderDetails from "../OrderDetails/OrderDetails";
+import OrderDetails from "../order-details/order-details";
 import {
     ConstructorElement,
     DragIcon,
@@ -8,11 +8,10 @@ import {
     Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
-import BurgerConstructorStyles from "./BurgerConstructor.module.css";
+import BurgerConstructorStyles from "./burger-constructor.module.css";
 
 function BurgerConstructor(props) {
     const [showModal, setShowModal] = useState(false);
-
     const filterData = props.data.slice(1, -1);
     return (
         <section className={BurgerConstructorStyles.main}>
@@ -85,7 +84,7 @@ function BurgerConstructor(props) {
                     </div>
                 </div>
             </div>
-            <OrderDetails show={showModal}></OrderDetails>
+            <OrderDetails isOpen={showModal} onClose={() => setShowModal(false)} ingridients={true}></OrderDetails>
         </section>
     );
 }

@@ -1,0 +1,10 @@
+.wrapper {
+    width: 720px;
+    background-color: #1c1c21;
+}
+
+.closeIcon {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
