@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import Modal from '../modal/modal';
 import OrderDetails from "../order-details/order-details";
 import {
     ConstructorElement,
@@ -88,11 +89,9 @@ function BurgerConstructor(props) {
                     </div>
                 </div>
             </div>
-            <OrderDetails
-                isOpen={showModal}
-                onClose={() => setShowModal(false)}
-                ingridients={true}
-            ></OrderDetails>
+            <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+                <OrderDetails ingridients={true} />
+            </Modal>
         </section>
     );
 }

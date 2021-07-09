@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Modal from "../modal/modal";
 import IngridientDetails from "../ingredient-details/ingredient-details";
 import {
     Tab,
@@ -88,7 +89,7 @@ function BurgerIngredients(props) {
                 {main.map((bun) => (
                     <li
                         key={bun._id}
-                        className={BurgerIngredientsStyles.card}
+                        className={`${BurgerIngredientsStyles.card} mt-6 mr-3 mb-10 ml-4`}
                         onClick={() => openIngridientsDetails(bun)}
                     >
                         <img
@@ -116,7 +117,7 @@ function BurgerIngredients(props) {
                 {sauce.map((bun) => (
                     <li
                         key={bun._id}
-                        className={BurgerIngredientsStyles.card}
+                        className={`${BurgerIngredientsStyles.card} mt-6 mr-3 mb-10 ml-4`}
                         onClick={() => openIngridientsDetails(bun)}
                     >
                         <img
@@ -138,11 +139,9 @@ function BurgerIngredients(props) {
                     </li>
                 ))}
             </ul>
-            <IngridientDetails
-                ingridients={ingridients}
-                isOpen={showModal}
-                onClose={() => setShowModal(false)}
-            />
+            <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+                <IngridientDetails ingridients={ingridients} />
+            </Modal>
         </section>
     );
 }
