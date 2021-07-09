@@ -30,9 +30,9 @@ function OrderDetails(props) {
 }
 
 OrderDetails.propTypes = {
-    ingridients: PropTypes.bool,
-    isOpen: PropTypes.bool,
-    onClose: PropTypes.func,
+    ingridients: PropTypes.bool.isRequired,
+    isOpen: PropTypes.bool.isRequired,
+    onClose: PropTypes.func.isRequired,
 };
 
 export default OrderDetails;

@@ -21,9 +21,9 @@ function Modal(props) {
     );
 }
 Modal.propTypes = {
-    title: PropTypes.string,
-    isOpen: PropTypes.bool,
-    onClose: PropTypes.func,
+    title: PropTypes.string.isRequired,
+    isOpen: PropTypes.bool.isRequired,
+    onClose: PropTypes.func.isRequired,
 };
 
 export default Modal;

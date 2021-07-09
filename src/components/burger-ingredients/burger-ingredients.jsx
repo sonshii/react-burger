@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import IngridientDetails from "../ingredient-details/ingredient-details";
 import {
     Tab,
@@ -11,7 +11,7 @@ function BurgerIngredients(props) {
     const [showModal, setShowModal] = React.useState(false);
     const [ingridients, setIngridients] = React.useState();
     const [current, setCurrent] = React.useState("one");
-    
+
     const bun = props.data.filter((bun) => {
         return bun.type === "bun";
     });
@@ -25,7 +25,7 @@ function BurgerIngredients(props) {
     const openIngridientsDetails = (bun) => {
         setIngridients(bun);
         setShowModal(true);
-    }
+    };
 
     return (
         <section className={`${BurgerIngredientsStyles.main} mr-10`}>
@@ -55,72 +55,108 @@ function BurgerIngredients(props) {
                     Начинки
                 </Tab>
             </div>
-            <p
-                className={`text text_type_main-medium mt-8 mb-6`}
-            >
-                Булки
-            </p>
+            <p className={`text text_type_main-medium mt-8 mb-6`}>Булки</p>
             <ul className={`${BurgerIngredientsStyles.cardList}`}>
                 {bun.map((bun) => (
-                    <li key={bun._id} className={`${BurgerIngredientsStyles.card} mt-6 mr-3 mb-10 ml-4`} onClick={()=>openIngridientsDetails(bun)}>
-                        <img src={bun.image} alt="img" className="pt-6 pr-4 pb-1 pl-4"/>
+                    <li
+                        key={bun._id}
+                        className={`${BurgerIngredientsStyles.card} mt-6 mr-3 mb-10 ml-4`}
+                        onClick={() => openIngridientsDetails(bun)}
+                    >
+                        <img
+                            src={bun.image}
+                            alt="img"
+                            className="pt-6 pr-4 pb-1 pl-4"
+                        />
                         <div
                             className={`${BurgerIngredientsStyles.price_block}`}
                         >
-                            <p className={`text text_type_digits-default mr-2`}>{bun.price}</p>
+                            <p className={`text text_type_digits-default mr-2`}>
+                                {bun.price}
+                            </p>
                             <CurrencyIcon type="primary" />
                         </div>
-                        <p className="text text_type_main-default">{bun.name}</p>
+                        <p className="text text_type_main-default">
+                            {bun.name}
+                        </p>
                     </li>
                 ))}
             </ul>
 
-            <p
-                className={`text text_type_main-medium mt-8 mb-6`}
-            >
-                Соусы
-            </p>
+            <p className={`text text_type_main-medium mt-8 mb-6`}>Соусы</p>
             <ul className={`${BurgerIngredientsStyles.cardList}`}>
                 {main.map((bun) => (
-                    <li key={bun._id} className={BurgerIngredientsStyles.card} onClick={()=>openIngridientsDetails(bun)}>
-                        <img src={bun.image} alt="img" className="pt-6 pr-4 pb-1 pl-4"/>
+                    <li
+                        key={bun._id}
+                        className={BurgerIngredientsStyles.card}
+                        onClick={() => openIngridientsDetails(bun)}
+                    >
+                        <img
+                            src={bun.image}
+                            alt="img"
+                            className="pt-6 pr-4 pb-1 pl-4"
+                        />
                         <div
                             className={`${BurgerIngredientsStyles.price_block}`}
                         >
-                            <p className={`text text_type_digits-default mr-2`}>{bun.price}</p>
+                            <p className={`text text_type_digits-default mr-2`}>
+                                {bun.price}
+                            </p>
                             <CurrencyIcon type="primary" />
                         </div>
-                        <p className="text text_type_main-default">{bun.name}</p>
+                        <p className="text text_type_main-default">
+                            {bun.name}
+                        </p>
                     </li>
                 ))}
             </ul>
 
-            <p
-                className={`text text_type_main-medium mt-8 mb-6`}
-            >
-                Начинки
-            </p>
+            <p className={`text text_type_main-medium mt-8 mb-6`}>Начинки</p>
             <ul className={`${BurgerIngredientsStyles.cardList}`}>
                 {sauce.map((bun) => (
-                    <li key={bun._id} className={BurgerIngredientsStyles.card} onClick={()=>openIngridientsDetails(bun)}>
-                        <img src={bun.image} alt="img" className="pt-6 pr-4 pb-1 pl-4"/>
+                    <li
+                        key={bun._id}
+                        className={BurgerIngredientsStyles.card}
+                        onClick={() => openIngridientsDetails(bun)}
+                    >
+                        <img
+                            src={bun.image}
+                            alt="img"
+                            className="pt-6 pr-4 pb-1 pl-4"
+                        />
                         <div
                             className={`${BurgerIngredientsStyles.price_block}`}
                         >
-                            <p className={`text text_type_digits-default mr-2`}>{bun.price}</p>
+                            <p className={`text text_type_digits-default mr-2`}>
+                                {bun.price}
+                            </p>
                             <CurrencyIcon type="primary" />
                         </div>
-                        <p className="text text_type_main-default">{bun.name}</p>
+                        <p className="text text_type_main-default">
+                            {bun.name}
+                        </p>
                     </li>
                 ))}
             </ul>
-            <IngridientDetails ingridients={ingridients} isOpen={showModal} onClose={() => setShowModal(false)}/>
+            <IngridientDetails
+                ingridients={ingridients}
+                isOpen={showModal}
+                onClose={() => setShowModal(false)}
+            />
         </section>
     );
 }
 
 BurgerIngredients.propTypes = {
-    data: PropTypes.array,
+    data: PropTypes.arrayOf(
+        PropTypes.shape({
+            _id: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired,
+            type: PropTypes.string.isRequired,
+            price: PropTypes.number.isRequired,
+            image: PropTypes.string.isRequired,
+        })
+    ).isRequired,
 };
 
 export default BurgerIngredients;
