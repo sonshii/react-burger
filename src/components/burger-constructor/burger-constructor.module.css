@@ -1,0 +1,55 @@
+.main {
+    width: 600px;
+    height: 463px;
+    align-items: center;
+    overflow: auto;
+}
+
+.main::-webkit-scrollbar {
+    width: 12px;
+}
+
+.main::-webkit-scrollbar-track {
+    background: #2f2f37;
+}
+
+.main::-webkit-scrollbar-thumb {
+    background: #8585ad;
+    border: 3px solid #2f2f37;
+    border-radius: 6px;
+}
+
+.constructorList {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.elementBlock {
+    padding-left: 56px;
+}
+
+.dragIcon {
+    left: 22.92%;
+    right: 22.92%;
+    top: 12.5%;
+    bottom: 11.22%;
+}
+
+.width {
+    width: -webkit-fill-available;
+}
+
+.totalPriceBlock {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.price {
+    font-family: Iceland;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 48px;
+    line-height: 36px;
+}
