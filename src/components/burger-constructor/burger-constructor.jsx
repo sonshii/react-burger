@@ -90,7 +90,7 @@ function BurgerConstructor(props) {
                 </div>
             </div>
             <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
-                <OrderDetails ingridients={true} />
+                <OrderDetails ingredients={filterData} />
             </Modal>
         </section>
     );
@@ -100,7 +100,7 @@ BurgerConstructor.propTypes = {
         PropTypes.shape({
             _id: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
-            price: PropTypes.number.isRequired,
+            price: PropTypes.string.isRequired,
             image_mobile: PropTypes.string.isRequired,
         })
     ).isRequired,

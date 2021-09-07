@@ -1,39 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
+import fetchBurgerIngredients from '../../services/actions/burger-ingredients'
 import AppHeader from "../app-header/app-header";
 import BurgerIngredients from "../burger-ingredients/burger-ingredients";
 import BurgerConstructor from "../burger-constructor/burger-constructor";
 
 import appStyles from "./app.module.css";
 
-
-const url = "https://norma.nomoreparties.space/api/ingredients";
-
 function App() {
-    const [error, setError] = useState(null);
-    const [isLoaded, setIsLoaded] = useState(false);
-    const [items, setItems] = useState();
+    const allBurgerIngredients = useSelector(state => state.burgerIngredientsReducer.allReceivedIngredients);
+    const allReceivedIngredientsIsLoaded = useSelector(state => state.burgerIngredientsReducer.allReceivedIngredientsIsLoaded);
+    const allReceivedIngredientsIsError = useSelector(state => state.burgerIngredientsReducer.allReceivedIngredientsIsError);
+    
+    const dispatch = useDispatch();
 
-    useEffect(() => {
-        fetch(url)
-            .then((res) => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(res.status);
-            })
-            .then((result) => {
-                setItems(result.data);
-                setIsLoaded(true);
-            })
-            .catch((error) => {
-                setIsLoaded(true);
-                setError(error);
-            });
-    }, []);
-    if (error) {
-        return <div>Ошибка: {error.message}</div>;
-    } else if (!isLoaded) {
+    useEffect(()=>{
+        fetchBurgerIngredients(dispatch);
+    }, [dispatch])
+
+
+    if (allReceivedIngredientsIsError) {
+        return <div>Ошибка: {allReceivedIngredientsIsError.message}</div>;
+    } else if (allReceivedIngredientsIsLoaded) {
         return <div>Загрузка...</div>;
     } else {
         return (
@@ -43,8 +32,8 @@ function App() {
                 </header>
                 {}
                 <main className={appStyles.main}>
-                    <BurgerIngredients data={items} />
-                    <BurgerConstructor data={items} />
+                    <BurgerIngredients data={allBurgerIngredients} />
+                    <BurgerConstructor data={allBurgerIngredients} />
                 </main>
             </div>
         );

@@ -1,5 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useSelector, useDispatch } from "react-redux";
+import { setIngredientDetails } from '../../services/actions/ingredient-details'
 import Modal from "../modal/modal";
 import IngridientDetails from "../ingredient-details/ingredient-details";
 import {
@@ -9,8 +11,10 @@ import {
 import BurgerIngredientsStyles from "./burger-ingredients.module.css";
 
 function BurgerIngredients(props) {
+    const ingredients = useSelector(state => state.ingredientDetailsReducer.ingredientDetails);
+    console.log('ingredients', ingredients);
+    const dispatch = useDispatch();
     const [showModal, setShowModal] = React.useState(false);
-    const [ingridients, setIngridients] = React.useState();
     const [current, setCurrent] = React.useState("one");
 
     const bun = props.data.filter((bun) => {
@@ -23,8 +27,8 @@ function BurgerIngredients(props) {
         return sauce.type === "sauce";
     });
 
-    const openIngridientsDetails = (bun) => {
-        setIngridients(bun);
+    const openIngredientsDetails = (ingridient) => {
+        dispatch(setIngredientDetails(ingridient));
         setShowModal(true);
     };
 
@@ -62,7 +66,7 @@ function BurgerIngredients(props) {
                     <li
                         key={bun._id}
                         className={`${BurgerIngredientsStyles.card} mt-6 mr-3 mb-10 ml-4`}
-                        onClick={() => openIngridientsDetails(bun)}
+                        onClick={() => openIngredientsDetails(bun)}
                     >
                         <img
                             src={bun.image}
@@ -90,7 +94,7 @@ function BurgerIngredients(props) {
                     <li
                         key={bun._id}
                         className={`${BurgerIngredientsStyles.card} mt-6 mr-3 mb-10 ml-4`}
-                        onClick={() => openIngridientsDetails(bun)}
+                        onClick={() => openIngredientsDetails(bun)}
                     >
                         <img
                             src={bun.image}
@@ -118,7 +122,7 @@ function BurgerIngredients(props) {
                     <li
                         key={bun._id}
                         className={`${BurgerIngredientsStyles.card} mt-6 mr-3 mb-10 ml-4`}
-                        onClick={() => openIngridientsDetails(bun)}
+                        onClick={() => openIngredientsDetails(bun)}
                     >
                         <img
                             src={bun.image}
@@ -139,8 +143,13 @@ function BurgerIngredients(props) {
                     </li>
                 ))}
             </ul>
-            <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
-                <IngridientDetails ingridients={ingridients} />
+            <Modal 
+                isOpen={showModal} 
+                onClose={() => {
+                    dispatch(setIngredientDetails({}));
+                    setShowModal(false)
+                }}>
+                <IngridientDetails ingredients={ingredients} />
             </Modal>
         </section>
     );
@@ -152,7 +161,7 @@ BurgerIngredients.propTypes = {
             _id: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
             type: PropTypes.string.isRequired,
-            price: PropTypes.number.isRequired,
+            price: PropTypes.string.isRequired,
             image: PropTypes.string.isRequired,
         })
     ).isRequired,

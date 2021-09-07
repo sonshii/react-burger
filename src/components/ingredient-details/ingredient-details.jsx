@@ -3,18 +3,18 @@ import PropTypes from "prop-types";
 import IngridientDetailsStyle from "./ingredient-details.module.css";
 
 function IngridientDetails(props) {
-    if (!props.ingridients) {
+    if (!props.ingredients) {
         return null;
     }
     return (
         <div className={IngridientDetailsStyle.wrapper}>
             <img
-                src={props.ingridients.image_large}
+                src={props.ingredients.image_large}
                 alt="img"
                 className="ml-30 mr-30 mb-4"
             />
             <p className="text text_type_main-medium">
-                {props.ingridients.name}
+                {props.ingredients.name}
             </p>
             <div className={`${IngridientDetailsStyle.kbzhu} mt-8 mb-15`}>
                 <div className={`${IngridientDetailsStyle.blockKbzhu} mr-5`}>
@@ -22,7 +22,7 @@ function IngridientDetails(props) {
                         Калории,ккал
                     </p>
                     <p className="text text_type_main-default text_color_inactive">
-                        {props.ingridients.calories}
+                        {props.ingredients.calories}
                     </p>
                 </div>
                 <div className={`${IngridientDetailsStyle.blockKbzhu} mr-5`}>
@@ -30,7 +30,7 @@ function IngridientDetails(props) {
                         Белки,г
                     </p>
                     <p className="text text_type_main-default text_color_inactive">
-                        {props.ingridients.proteins}
+                        {props.ingredients.proteins}
                     </p>
                 </div>
                 <div className={`${IngridientDetailsStyle.blockKbzhu} mr-5`}>
@@ -38,7 +38,7 @@ function IngridientDetails(props) {
                         Жиры,г
                     </p>
                     <p className="text text_type_main-default text_color_inactive">
-                        {props.ingridients.fat}
+                        {props.ingredients.fat}
                     </p>
                 </div>
                 <div className={IngridientDetailsStyle.blockKbzhu}>
@@ -46,7 +46,7 @@ function IngridientDetails(props) {
                         Углеводы,г
                     </p>
                     <p className="text text_type_main-default text_color_inactive">
-                        {props.ingridients.carbohydrates}
+                        {props.ingredients.carbohydrates}
                     </p>
                 </div>
             </div>
@@ -54,16 +54,16 @@ function IngridientDetails(props) {
     );
 }
 const dataShape = PropTypes.shape({
-    _id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    proteins: PropTypes.number.isRequired,
-    fat: PropTypes.number.isRequired,
-    carbohydrates: PropTypes.number.isRequired,
-    calories: PropTypes.number.isRequired,
-    image_large: PropTypes.string.isRequired,
+    _id: PropTypes.string,
+    name: PropTypes.string,
+    proteins: PropTypes.number,
+    fat: PropTypes.number,
+    carbohydrates: PropTypes.number,
+    calories: PropTypes.number,
+    image_large: PropTypes.string,
 });
 IngridientDetails.propTypes = {
-    ingridients: dataShape,
+    ingredients: dataShape,
 };
 
 export default IngridientDetails;
